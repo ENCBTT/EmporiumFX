@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="720" maxWidth="1280" minHeight="500" minWidth="1000.0" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../resources/css/style1.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CCartasD">
+    <children>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="1000.0">
+         <children>
+            <Label layoutX="398.0" layoutY="36.0" text="BUSQUEDA DE CARTAS" textFill="#494949">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tb_principalD" layoutX="39.0" layoutY="156.0" prefHeight="307.0" prefWidth="457.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="504.0" AnchorPane.topAnchor="156.0">
+              <columns>
+                <TableColumn fx:id="cl31" prefWidth="63.0" text="CODIGO" />
+                  <TableColumn fx:id="cl32" prefWidth="220.0" text="DESCRIPCION" />
+                  <TableColumn fx:id="cl33" prefWidth="174.0" text="PRECIO" />
+              </columns>
+            </TableView>
+            <GridPane layoutX="40.0" layoutY="75.0" prefHeight="61.0" prefWidth="922.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="68.0" />
+                <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="251.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="140.0" />
+                  <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="225.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="137.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="122.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="BUSCAR" textFill="#494949">
+                     <font>
+                        <Font name="Georgia" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_buscarD" onKeyReleased="#busqueda2" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Georgia" size="14.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+                  <Button fx:id="bt_add" mnemonicParsing="false" onAction="#gestionar_eventos" prefHeight="40.0" prefWidth="90.0" text="AGREGAR" GridPane.columnIndex="2">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="bt_salirD" mnemonicParsing="false" onAction="#salirVentana" prefHeight="40.0" prefWidth="90.0" text="SALIR" GridPane.columnIndex="3">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </GridPane>
+            <ImageView fx:id="iv_img" fitHeight="274.0" fitWidth="440.0" layoutX="531.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="722.0" layoutY="156.0" text="IMAGEN" textFill="#494949">
+               <font>
+                  <Font name="Georgia" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

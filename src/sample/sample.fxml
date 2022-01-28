@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <ComboBox fx:id="cb1" layoutX="85.0" layoutY="137.0" prefWidth="150.0" />
+      <Button fx:id="bt1" layoutX="315.0" layoutY="137.0" mnemonicParsing="false" onAction="#testeCB" text="Button" />
+      <ComboBox fx:id="cb2" editable="true" layoutX="85.0" layoutY="188.0" prefWidth="150.0" />
+      <Label fx:id="lbl_hora" layoutX="286.0" layoutY="58.0" text="HORA" />
+      <Button fx:id="bt2" layoutX="277.0" layoutY="87.0" mnemonicParsing="false" onAction="#hora" text="HORA" />
+   </children>
+</AnchorPane>

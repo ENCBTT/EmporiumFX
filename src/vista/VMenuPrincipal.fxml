@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CMenuPrincipal">
+   <children>
+      <Pane layoutX="14.0" layoutY="28.0" prefHeight="866.0" prefWidth="100.0">
+         <children>
+            <VBox layoutX="5.0" layoutY="14.0">
+               <children>
+                  <Button fx:id="btMesas" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#abrirMesas" prefHeight="60.0" prefWidth="90.0" text="MESAS">
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                     <font>
+                        <Font name="Georgia" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btPro" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#abrirProductos" prefHeight="60.0" prefWidth="90.0" text="PRODUCTOS">
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                     <font>
+                        <Font name="Georgia" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btPed" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#abrirPedidos" prefHeight="60.0" prefWidth="90.0" text="PEDIDOS">
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                     <font>
+                        <Font name="Georgia" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btFact" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#abrirFacturas" prefHeight="60.0" prefWidth="90.0" text="FACTURAR">
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                     <font>
+                        <Font name="Georgia" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btPer" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#abrirPersonas" prefHeight="60.0" prefWidth="90.0" text="PERSONAS">
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                     <font>
+                        <Font name="Georgia" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Button fx:id="bt_salir" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="792.0" mnemonicParsing="false" onAction="#salirVentana" prefHeight="60.0" prefWidth="90.0" text="SALIR">
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+               <font>
+                  <Font name="Georgia" size="14.0" />
+               </font>
+            </Button>
+         </children></Pane>
+      <MenuBar layoutX="-2.0" layoutY="2.0" prefHeight="25.0" prefWidth="1280.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="REGISTRO">
+            <items>
+                  <Menu mnemonicParsing="false" text="Generales">
+                    <items>
+                        <MenuItem fx:id="VClases_facturas" mnemonicParsing="false" onAction="#abrirVentana" text="Clases de Facturas" />
+                        <MenuItem fx:id="VCondiciones_facturas" mnemonicParsing="false" onAction="#abrirVentana" text="Condiciones de Facturas" />
+                        <MenuItem fx:id="VEstados" mnemonicParsing="false" onAction="#abrirVentana" text="Estados" />
+                        <MenuItem fx:id="VLocalidades" mnemonicParsing="false" onAction="#abrirVentana" text="Localidades" />
+                        <MenuItem fx:id="VMunicipios" mnemonicParsing="false" onAction="#abrirVentana" text="Municipios" />
+                      <MenuItem fx:id="VNacionalidades" mnemonicParsing="false" onAction="#abrirVentana" text="Nacionalidades" />
+                        <MenuItem fx:id="VTipos_ajustes" mnemonicParsing="false" onAction="#abrirVentana" text="Tipos de ajustes de Inventario" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Personas">
+                    <items>
+                        <MenuItem fx:id="VCargos" mnemonicParsing="false" onAction="#abrirVentana" text="Cargos" />
+                    <MenuItem fx:id="VPersonas2" mnemonicParsing="false" onAction="#abrirVentana" text="Registro de personas" />
+                        <MenuItem fx:id="VUsuarios" mnemonicParsing="false" onAction="#abrirVentana" text="Usuarios" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Productos">
+                    <items>
+                      <MenuItem fx:id="VAjustes_precios" mnemonicParsing="false" onAction="#ajustes_precios" text="Ajuste de precio" />
+                        <MenuItem fx:id="Vajustes_stock" mnemonicParsing="false" onAction="#abrirVentana" text="Ajuste de Stock" />
+                        <MenuItem fx:id="VCondigos_barras" mnemonicParsing="false" onAction="#abrirVentana" text="Codigos de Barras" />
+                        <MenuItem fx:id="VEmbalajes" mnemonicParsing="false" onAction="#abrirVentana" text="Embalajes" />
+                      <MenuItem fx:id="VProductos" mnemonicParsing="false" onAction="#abrirVentana" text="Productos" />
+                        <MenuItem fx:id="VGrupos_productos" mnemonicParsing="false" onAction="#abrirVentana" text="Grupos de Productos" />
+                        <MenuItem fx:id="VSubgrupos_productos" mnemonicParsing="false" onAction="#abrirVentana" text="Sub-grupos de Productos" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Timbrados">
+                    <items>
+                        <MenuItem fx:id="VEstablecimientos" mnemonicParsing="false" onAction="#abrirVentana" text="Establecimientos" />
+                      <MenuItem fx:id="VPuntos_expediciones" mnemonicParsing="false" onAction="#abrirVentana" text="Puntos de Expedicion" />
+                        <MenuItem fx:id="VTimbrados" mnemonicParsing="false" onAction="#abrirVentana" text="Registro de Timbrados" />
+                        <MenuItem fx:id="VSucursal" mnemonicParsing="false" onAction="#abrirVentana" text="Sucursal" />
+                        <MenuItem fx:id="VTipos_documentos" mnemonicParsing="false" onAction="#abrirVentana" text="Tipos de Documentos" />
+                    </items>
+                  </Menu>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="COMPRAS">
+            <items>
+                  <MenuItem fx:id="VCta_pagar" mnemonicParsing="false" onAction="#abrirVentana" text="Cuenta a Pagar" />
+              <MenuItem fx:id="VCompras" mnemonicParsing="false" onAction="#abrirCompras" text="Facturas de Compras" />
+                  <MenuItem fx:id="VNotas_credito" mnemonicParsing="false" onAction="#abrirVentana" text="Notas de Credito" />
+                  <MenuItem fx:id="VNotas_debito" mnemonicParsing="false" onAction="#abrirVentana" text="Notas de Debito" />
+                  <MenuItem fx:id="VOrdenes_compras" mnemonicParsing="false" onAction="#abrirVentana" text="Ordenes de Compras" />
+                  <MenuItem fx:id="VPedidos_compras" mnemonicParsing="false" onAction="#abrirVentana" text="Pedidos de Compras" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="VENTAS">
+              <items>
+                  <Menu mnemonicParsing="false" text="Caja">
+                    <items>
+                      <MenuItem fx:id="VAperturas_cajas" mnemonicParsing="false" onAction="#abrirVentana" text="Aperturas de Cajas" />
+                        <MenuItem fx:id="VArqueos" mnemonicParsing="false" onAction="#abrirVentana" text="Arqueos" />
+                        <MenuItem fx:id="VCierresCajas" mnemonicParsing="false" onAction="#abrirVentana" text="Cierres de Cajas" />
+                        <MenuItem fx:id="VCheques" mnemonicParsing="false" onAction="#abrirVentana" text="Cheques" />
+                        <MenuItem fx:id="VFormas_pago" mnemonicParsing="false" onAction="#abrirVentana" text="Formas de Pagos" />
+                        <MenuItem fx:id="VMovimientos_caja" mnemonicParsing="false" onAction="#abrirVentana" text="Movimientos de Cajas" />
+                        <MenuItem fx:id="VTarjetas" mnemonicParsing="false" onAction="#abrirVentana" text="Tarjetas" />
+                        <MenuItem fx:id="VTipos_tarjetas" mnemonicParsing="false" onAction="#abrirVentana" text="Tipos de Tarjetas" />
+                    </items>
+                  </Menu>
+                  <MenuItem fx:id="VCta_cobrar" mnemonicParsing="false" onAction="#abrirVentana" text="Cuentas a Cobrar" />
+                  <MenuItem fx:id="VCuotas" mnemonicParsing="false" onAction="#abrirVentana" text="Cuotas" />
+                  <MenuItem fx:id="VFacturas" mnemonicParsing="false" onAction="#abrirVentana" text="Facturas de Ventas" />
+                  <MenuItem fx:id="VVnotas_credito" mnemonicParsing="false" onAction="#abrirVentana" text="Notas de Credito" />
+                  <MenuItem fx:id="VVnotas_debito" mnemonicParsing="false" onAction="#abrirVentana" text="Notas de Debito" />
+                  <MenuItem fx:id="VPresupuestos" mnemonicParsing="false" onAction="#abrirVentana" text="Presupuestos" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="RESTAURANTE">
+               <items>
+                  <MenuItem fx:id="VCartas" mnemonicParsing="false" onAction="#abrirVentana" text="Cartas" />
+                  <MenuItem fx:id="VDeliverys" mnemonicParsing="false" onAction="#deliverys" text="Deliverys" />
+                  <MenuItem fx:id="VMesas" mnemonicParsing="false" onAction="#abrirVentana" text="Mesas" />
+                  <MenuItem fx:id="VOrdenes_cocina" mnemonicParsing="false" onAction="#abrirVentana" text="Ordenes Cocina" />
+                  <MenuItem fx:id="VPedidos" mnemonicParsing="false" onAction="#abrirVentana" text="Pedidos" />
+                  <MenuItem fx:id="VRecetas" mnemonicParsing="false" onAction="#abrirVentana" text="Recetas" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="INFORMES">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Facturas" />
+                  <MenuItem mnemonicParsing="false" text="Pedidos" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="OPCIONES">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Sobre" />
+                  <MenuItem fx:id="mbt_salir" mnemonicParsing="false" onAction="#salirVentana" text="SALIR" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <GridPane layoutX="210.0" layoutY="865.0" prefHeight="25.0" prefWidth="1033.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="235.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="97.0" />
+          <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Usuario: ">
+               <font>
+                  <Font name="Georgia" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbluser" text="Usuario" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Georgia" size="14.0" />
+               </font>
+            </Label>
+            <Label text="Establecimiento: " GridPane.columnIndex="2">
+               <font>
+                  <Font name="Georgia" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblest" text="Establecimiento" GridPane.columnIndex="3">
+               <font>
+                  <Font name="Georgia" size="14.0" />
+               </font>
+            </Label>
+            <Label text="Punto de Expedicion: " GridPane.columnIndex="4">
+               <font>
+                  <Font name="Georgia" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblexp" text="Expedicion" GridPane.columnIndex="5">
+               <font>
+                  <Font name="Georgia" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <Label layoutX="533.0" layoutY="89.0" text="BIEN VENIDO" textFill="#434343">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

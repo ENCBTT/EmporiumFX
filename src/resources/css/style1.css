@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 7 jul. 2020, 22:24:31
+    Author     : ENC
+*/
+
+#bt_guardar {
+
+    -fx-background-image: url("/resources/imgs/icones/guardar2.png");
+	-fx-background-size: 24 20;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: left;
+
+}
+#bt_editar {
+
+    -fx-background-image: url("/resources/imgs/icones/editar2.png");
+	-fx-background-size: 24 20;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: left;
+
+}
+#bt_eliminar {
+
+    -fx-background-image: url("/resources/imgs/icones/eliminar2.png");
+	-fx-background-size: 24 20;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: left;
+
+}
+#bt_nuevo {
+
+    -fx-background-image: url("/resources/imgs/icones/nuevo2.png");
+	-fx-background-size: 24 20;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: left;
+
+}
+#bt_imp {
+
+    -fx-background-image: url("/resources/imgs/icones/reporte2.png");
+	-fx-background-size: 24 20;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: left;
+
+}
+#bt_salir {
+
+    -fx-background-image: url("/resources/imgs/icones/cancelar2.png");
+	-fx-background-size: 24 20;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: left;
+
+}
