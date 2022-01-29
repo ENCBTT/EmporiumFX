@@ -103,7 +103,7 @@ public class MTimbrado_detalle {
                     "INNER JOIN puntos_expediciones d ON (a.expedicion_id = d.id_expedicion)" +
                     "INNER JOIN estados e ON (a.estado_id = e.id_estado)" +
                     "INNER JOIN tipos_documentos f ON (a.documento_id = f.id_documento)" +
-                    "ORDER BY timbrado_id");
+                    "ORDER BY secuencia ASC LIMIT 1");
             while (resultado.next()){
                 lista.add(new MTimbrado_detalle(
                         new MTimbrados(resultado.getInt("a.timbrado_id"), resultado.getInt("b.num_timbrado")),
@@ -111,7 +111,7 @@ public class MTimbrado_detalle {
                         new MPuntos_expediciones(resultado.getInt("a.expedicion_id"), resultado.getString("d.descripcion")),
                         new MEstados(resultado.getInt("a.estado_id"), resultado.getString("e.descripcion")),
                         new MTipos_documentos(resultado.getInt("a.documento_id"), resultado.getString("f.descripcion")),
-                        resultado.getInt("codigo_factura"),
+                        resultado.getInt("factura_id"),
                         resultado.getInt("secuencia"),
                         resultado.getInt("num_inicial"),
                         resultado.getInt("num_final")
@@ -124,19 +124,25 @@ public class MTimbrado_detalle {
 
     public int guardarRegistro(Connection connection){
         try {
+            int i;
             PreparedStatement instruccion = connection.prepareStatement("INSERT INTO detalle_timbrados(timbrado_id, establecimiento_id, expedicion_id, estado_id, documento_id, num_inicial, num_final)" +
                     " values(?,?,?,?,?,?,?);");
-            instruccion.setInt(1, timbrados.getCodMun());
-            instruccion.setInt(2, establecimientos.getCodEst());
-            instruccion.setInt(3, expedicion.getCodMun());
-            instruccion.setInt(4,estado.getCodMun());
-            instruccion.setInt(5,tipos_documentos.getCodMun());
-            instruccion.setInt(6, numI.get());
-            instruccion.setInt(7, numF.get());
+            for (i = numI.get(); i <= numF.get(); i++){
+                //genera objeto de tipo detalle y agrega de acuerto la secuencia ingresada
+                instruccion.setInt(1, timbrados.getCodMun());
+                instruccion.setInt(2, establecimientos.getCodEst());
+                instruccion.setInt(3, expedicion.getCodMun());
+                instruccion.setInt(4,estado.getCodMun());
+                instruccion.setInt(5,tipos_documentos.getCodMun());
+                instruccion.setInt(6, numI.get());
+                instruccion.setInt(7, numF.get());
+                System.out.println("secuencia = " + i);
+                instruccion.executeUpdate();
+            }
             /*
             faltan hacer validaciones
             */
-            return instruccion.executeUpdate();
+                return 1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return 0;
@@ -146,7 +152,7 @@ public class MTimbrado_detalle {
     public int guardarConFact(Connection connection) {
         try {
             int sec;
-            PreparedStatement instruccion; //falta validar vigencia de timbrado , se puede hacer un metodo en MTimbrado para eso y devolver un boolean
+            PreparedStatement instruccion; //falta validar vigencia de timbrado antes de guardar, se puede hacer un metodo en MTimbrado para eso y devolver un boolean
             PreparedStatement instruccion1 = connection.prepareStatement("SELECT * FROM detalle_timbrados WHERE timbrado_id = ? and establecimiento_id = ? and expedicion_id = ? " +
                     "and documento_id = ? ORDER BY secuencia ASC LIMIT 1;");
             instruccion1.setInt(1, timbrados.getCodMun());
@@ -154,8 +160,11 @@ public class MTimbrado_detalle {
             instruccion1.setInt(3, expedicion.getCodMun());
             instruccion1.setInt(4, tipos_documentos.getCodMun());
             ResultSet rs = instruccion1.executeQuery();
-            rs.next();
-            if (rs.getInt("secuencia") == 0 && rs.getInt("factura_id") == 0){ // si hay conincidencia debera editar esse primero registro para que sea la primera secuencia
+            rs.next();                                                     //verificar si ya existe el codigo de la factura en un detalle timbrado
+            if (rs.getInt("factura_id") == 0){ // si hay conincidencia debera editar esse primero registro para que sea la primera secuencia
+                System.out.println("alterando secuencia = " +(rs.getInt("secuencia") + 1)+ "factura_id = " + codFact.get()+
+                        " WHERE timbrado_id = "+timbrados.getCodMun()+" and establecimiento_id = "+establecimientos.getCodEst()+" and expedicion_id = "+expedicion.getCodMun()+" and documento_id = "+tipos_documentos.getCodMun());
+                /*
                 instruccion = connection.prepareStatement("UPDATE detalle_timbrados SET secuencia = ?, factura_id = ?" +
                         " WHERE timbrado_id = ? and establecimiento_id = ? and expedicion_id = ? and documento_id = ?");
                 instruccion.setInt(1,1);
@@ -164,9 +173,13 @@ public class MTimbrado_detalle {
                 instruccion.setInt(4, establecimientos.getCodEst());
                 instruccion.setInt(5, expedicion.getCodMun());
                 instruccion.setInt(6, tipos_documentos.getCodMun());
-                return instruccion.executeUpdate();
-            } else { // caso no debera insertar un nuevo registro con la siguiente secuencia
+                return instruccion.executeUpdate();*/
+            } /*else { // caso no debera insertar un nuevo registro con la siguiente secuencia
                 sec = (rs.getInt("secuencia") + 1);
+                System.out.println("insertando Detalle_timbrado timbrado_id = "+timbrados.getCodMun()+" establecimiento_id = "+establecimientos.getCodEst()+
+                        " expedicion_id = "+expedicion.getCodMun()+" documento_id = "+tipos_documentos.getCodMun()+ "Num inicial = "+rs.getInt("num_inicial")+
+                        " Num final = "+rs.getInt("num_final")+" codfact = "+codFact.get()+" secuencia = " +sec);
+
                 instruccion = connection.prepareStatement("INSERT INTO detalle_timbrados(timbrado_id, establecimiento_id, expedicion_id, estado_id, documento_id, num_inicial, num_final, id_factura, secuencia)" +
                         " values(?,?,?,?,?,?,?);");
                 instruccion.setInt(1, timbrados.getCodMun());
@@ -179,11 +192,13 @@ public class MTimbrado_detalle {
                 instruccion.setInt(8, codFact.get());
                 instruccion.setInt(9, sec);
                 return instruccion.executeUpdate();
-            }
+                return 1;
+            }*/
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return 0;
         }
+        return 1;
     }
 
     public int editarRegistro(Connection connection){
@@ -210,8 +225,10 @@ public class MTimbrado_detalle {
 
     public int eliminarRegistro(Connection connection){
         try {
-            PreparedStatement instruccion = connection.prepareStatement("UPDATE detalle_timbrados SET estado_id = 2 WHERE id_timbrado = ?");
+            PreparedStatement instruccion = connection.prepareStatement("UPDATE detalle_timbrados SET estado_id = 2 WHERE id_timbrado = ? and establecimiento_id = ? and expedicion_id = ?");
             instruccion.setInt(1,timbrados.getCodMun());
+            instruccion.setInt(2, establecimientos.getCodEst());
+            instruccion.setInt(3, expedicion.getCodMun());
             return instruccion.executeUpdate();
             }
         catch (SQLException throwables) {
@@ -229,7 +246,7 @@ public class MTimbrado_detalle {
                     "INNER JOIN puntos_expediciones d ON (a.expedicion_id = d.id_expedicion)" +
                     "INNER JOIN estados e ON (a.estado_id = e.id_estado)" +
                     "INNER JOIN tipos_documentos f ON (a.documento_id = f.id_documento)" +
-                    "WHERE (a.timbrado_id = ? OR b.num_timbrado = ?) ORDER BY timbrado_id");
+                    "WHERE (a.timbrado_id = ? OR b.num_timbrado = ?) ORDER BY secuencia ASC LIMIT 1");
             instruccion.setString(1, filtro);
             instruccion.setString(2, filtro);
             ResultSet resultado = instruccion.executeQuery();
@@ -241,7 +258,7 @@ public class MTimbrado_detalle {
                         new MPuntos_expediciones(resultado.getInt("a.expedicion_id"), resultado.getString("d.descripcion")),
                         new MEstados(resultado.getInt("a.estado_id"), resultado.getString("e.descripcion")),
                         new MTipos_documentos(resultado.getInt("a.documento_id"), resultado.getString("f.descripcion")),
-                        resultado.getInt("id_factura"),
+                        resultado.getInt("factura_id"),
                         resultado.getInt("secuencia"),
                         resultado.getInt("num_inicial"),
                         resultado.getInt("num_final")

@@ -183,10 +183,14 @@ public class MFacturas {
         }
     }
 
-    public int guardarRegistro(Connection connection){
+    public int guardarRegistro(Connection connection) {
         try {
             PreparedStatement instruccion;
-            if (getPedido()==null){
+            System.out.println("Ejecutando guardar Mfacturas");
+            if (getPedido() == null) {
+                System.out.println("insertanto facturas-pedidos = id_factura: " + codFact.get() + ", iva: " + iva.get() + ", total " + total.get() + ", fecha_factura: " + fecFact + ", fecha_conf " + fecConf +
+                        ", usuario_id " + usuario.getCodUsr() + ", clase_factura_id " + clase.getCodMun() + ", estado_id " + estado.getCodMun() + ", timbrado_id " + timbrado.getCodMun() + ", condicion_id " + condicion.getCodMun() + ", cliente_id " + cliente.getCodCli());
+/*
                 instruccion = connection.prepareStatement("insert into facturas(id_factura, iva, total, fecha_factura, fecha_conf, usuario_id, clase_factura_id, estado_id, timbrado_id, condicion_id, cliente_id)values(?,?,?,?,?,?,?,?,?,?,?)");
                 instruccion.setInt(1, codFact.get());
                 instruccion.setDouble(2, iva.get());
@@ -198,9 +202,11 @@ public class MFacturas {
                 instruccion.setInt(8,estado.getCodMun());
                 instruccion.setInt(9, timbrado.getCodMun());
                 instruccion.setInt(10, condicion.getCodMun());
-                instruccion.setInt(11, cliente.getCodCli());
-            }else {
-                instruccion = connection.prepareStatement("insert into facturas(id_factura, iva, total, fecha_factura, fecha_conf, pedido_id, usuario_id, clase_factura_id, estado_id, timbrado_id, condicion_id, cliente_id)values(?,?,?,?,?,?,?,?,?,?,?,?)");
+                instruccion.setInt(11, cliente.getCodCli());*/
+            } else {
+                System.out.println("insertanto facturas-pedidos = id_factura: " + codFact.get() + ", iva: " + iva.get() + ", total " + total.get() + ", fecha_factura: " + fecFact + ", fecha_conf " + fecConf + ", pedido_id " +
+                        "" + pedido.getCodMun() + ", usuario_id " + usuario.getCodUsr() + ", clase_factura_id " + clase.getCodMun() + ", estado_id " + estado.getCodMun() + ", timbrado_id " + timbrado.getCodMun() + ", condicion_id " + condicion.getCodMun() + ", cliente_id " + cliente.getCodCli());
+               /* instruccion = connection.prepareStatement("insert into facturas(id_factura, iva, total, fecha_factura, fecha_conf, pedido_id, usuario_id, clase_factura_id, estado_id, timbrado_id, condicion_id, cliente_id)values(?,?,?,?,?,?,?,?,?,?,?,?)");
                 instruccion.setInt(1, codFact.get());
                 instruccion.setDouble(2, iva.get());
                 instruccion.setDouble(3,total.get());
@@ -212,15 +218,18 @@ public class MFacturas {
                 instruccion.setInt(9,estado.getCodMun());
                 instruccion.setInt(10, timbrado.getCodMun());
                 instruccion.setInt(11, condicion.getCodMun());
-                instruccion.setInt(12, cliente.getCodCli());
+                instruccion.setInt(12, cliente.getCodCli());*/
             }
-
-            return instruccion.executeUpdate();
+            /*return instruccion.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return 0;
+        }*/
+            return 1;
+    } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        return 0;
     }
 
     public int editarRegistro(Connection connection){

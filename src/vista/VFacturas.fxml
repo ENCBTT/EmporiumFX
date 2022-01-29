@@ -299,7 +299,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </Button>
-                  <Button id="bt_guardar" fx:id="bt_guardar" alignment="CENTER" layoutX="449.0" layoutY="255.0" mnemonicParsing="false" onAction="#pruebaGuardarRegistro" prefHeight="40.0" prefWidth="90.0" text="GUARDAR" textAlignment="RIGHT">
+                  <Button id="bt_guardar" fx:id="bt_guardar" alignment="CENTER" layoutX="449.0" layoutY="255.0" mnemonicParsing="false" onAction="#guardarRegistro" prefHeight="40.0" prefWidth="90.0" text="GUARDAR" textAlignment="RIGHT">
                      <padding>
                         <Insets left="20.0" />
                      </padding>

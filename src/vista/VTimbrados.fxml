@@ -133,14 +133,14 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ComboBox fx:id="cbTim" prefWidth="150.0" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="cbTim" disable="true" prefWidth="150.0" GridPane.columnIndex="1" />
                               <ComboBox fx:id="cbEst" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cbExp" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField fx:id="txt_numI" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="Georgia" size="14.0" />
                                  </font>
                               </TextField>
-                              <ComboBox fx:id="cbExp" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField fx:id="txt_numF" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <font>
                                     <Font name="Georgia" size="14.0" />
@@ -212,7 +212,7 @@
                                     <Insets left="20.0" />
                                  </padding>
                               </Button>
-                              <Button fx:id="bt_eliminarD" disable="true" mnemonicParsing="false" onAction="#eliminarDetalle" prefHeight="40.0" prefWidth="90.0" text="ELIMINAR">
+                              <Button fx:id="bt_eliminarD" disable="true" mnemonicParsing="false" onAction="#eliminarDetalle" prefHeight="40.0" prefWidth="90.0" text="INACTIVAR">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>

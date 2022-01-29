@@ -10,11 +10,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.ConexionBD;
 import modelo.MAcceso;
 import modelo.MEstablecimientos;
 import modelo.MPuntos_expediciones;
+import net.sf.jasperreports.engine.util.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
@@ -35,6 +38,14 @@ public class CMenuPrincipal{
     private static final Logger LOGGER = LoggerFactory.getLogger(CMenuPrincipal.class);
 
     MAcceso datosUser;
+    Stage stgMesas = new Stage();
+    Stage stgAjp = new Stage();
+    Stage stgDel = new Stage();
+    Stage stgFact = new Stage();
+    Stage stgComp = new Stage();
+    Stage stgPed = new Stage();
+    Stage stgProd = new Stage();
+    Stage stgPers = new Stage();
 
     public void datosAcces(MAcceso datosUsuario){
         lbluser.setText(datosUsuario.getCodUser()+" - "+datosUsuario.getLogin());
@@ -50,8 +61,8 @@ public class CMenuPrincipal{
         Stage myStage = (Stage) this.bt_salir.getScene().getWindow();
         myStage.close();
     }
-
-    @FXML //crear metodo para abrir cualquier ventana
+    String teste = "teste";
+    @FXML //metodo para abrir cualquier ventana
     public void abrirVentana(Event event){
         Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
         MenuItem item = (MenuItem) event.getSource();
@@ -72,18 +83,24 @@ public class CMenuPrincipal{
             e.printStackTrace();
         }
     }
+
     @FXML
     public void ajustes_precios(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/VAjustes_precios.fxml"));
             Parent root1 = fxmlLoader.load();
-            Stage stageProd = new Stage();
             //crea una instancia del controlador con el controlador inicializado por fxmlLoader
             CAjustes_precios ajustes_precios = fxmlLoader.getController();
             //llama al metodo para passar el objeto de tipo Acceso con los datos de inicio de session
             ajustes_precios.datosUser(datosUser);
-            stageProd.setScene(new Scene(root1));
-            stageProd.show();
+            stgAjp.setScene(new Scene(root1));
+            if (!stgAjp.isShowing()) {
+                stgAjp.show();
+            } else if(stgAjp.isIconified()){
+                stgAjp.setIconified(false);
+            }else {
+                stgAjp.toFront();
+            }
             Stage myStage = (Stage) this.bt_salir.getScene().getWindow();
             myStage.close();
         } catch (IOException e) {
@@ -96,13 +113,18 @@ public class CMenuPrincipal{
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/VDeliverys.fxml"));
             Parent root1 = fxmlLoader.load();
-            Stage stageProd = new Stage();
             //crea una instancia del controlador con el controlador inicializado por fxmlLoader
             CDeliverys delivery = fxmlLoader.getController();
             //llama al metodo para passar el objeto de tipo Acceso con los datos de inicio de session
             delivery.datosUser(datosUser);
-            stageProd.setScene(new Scene(root1));
-            stageProd.show();
+            stgDel.setScene(new Scene(root1));
+            if (!stgDel.isShowing()) {
+                stgDel.show();
+            } else if(stgDel.isIconified()){
+                stgDel.setIconified(false);
+            }else {
+                stgDel.toFront();
+            }
             Stage myStage = (Stage) this.bt_salir.getScene().getWindow();
             myStage.close();
         } catch (IOException e) {
@@ -115,25 +137,36 @@ public class CMenuPrincipal{
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/VMesas.fxml"));
             Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
+            stgMesas.setScene(new Scene(root1));
+            if (!stgMesas.isShowing()) {
+                stgMesas.show();
+            } else if(stgMesas.isIconified()){
+                stgMesas.setIconified(false);
+            }else {
+                stgMesas.toFront();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void abrirFacturas(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/VFacturas.fxml"));
             Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
             //crea una instancia del controlador con el controlador inicializado por fxmlLoader
             CFacturas factura = fxmlLoader.getController();
             //llama al metodo para passar el objeto de tipo Acceso con los datos de inicio de session
             factura.datosUser(datosUser);
-            stage.setScene(new Scene(root1));
-            stage.show();
+            stgFact.setScene(new Scene(root1));
+            if (!stgFact.isShowing()) {
+                stgFact.show();
+            } else if(stgFact.isIconified()){
+                stgFact.setIconified(false);
+            }else {
+                stgFact.toFront();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -143,13 +176,18 @@ public class CMenuPrincipal{
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/VFacturas_compras.fxml"));
             Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
             //crea una instancia del controlador con el controlador inicializado por fxmlLoader
             CFacturas_compras factura = fxmlLoader.getController();
             //llama al metodo para passar el objeto de tipo Acceso con los datos de inicio de session
             factura.datosUser(datosUser);
-            stage.setScene(new Scene(root1));
-            stage.show();
+            stgComp.setScene(new Scene(root1));
+            if (!stgComp.isShowing()) {
+                stgComp.show();
+            } else if(stgComp.isIconified()){
+                stgComp.setIconified(false);
+            }else {
+                stgComp.toFront();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -159,23 +197,32 @@ public class CMenuPrincipal{
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/VPedidos.fxml"));
             Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
+            stgPed.setScene(new Scene(root1));
+            if (!stgPed.isShowing()) {
+                stgPed.show();
+            } else if(stgPed.isIconified()){
+                stgPed.setIconified(false);
+            }else {
+                stgPed.toFront();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     public void abrirProductos(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/VProductos.fxml"));
             Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
+            stgProd.setScene(new Scene(root1));
+            if (!stgProd.isShowing()) {
+                stgProd.show();
+            } else if(stgProd.isIconified()){
+                stgProd.setIconified(false);
+            }else {
+                stgProd.toFront();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -186,9 +233,14 @@ public class CMenuPrincipal{
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/VPersonas2.fxml"));
             Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
+            stgPers.setScene(new Scene(root1));
+            if (!stgPers.isShowing()) {
+                stgPers.show();
+            } else if(stgPers.isIconified()){
+                stgPers.setIconified(false);
+            }else {
+                stgPers.toFront();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

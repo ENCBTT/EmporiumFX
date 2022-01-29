@@ -278,29 +278,23 @@ public class CFacturas implements Initializable {
             //abre conexion
             conexion.iniciarConexion();
             //crea una nueva instancia del tipo facturas
-            if (MPedidos.obtenerPedido(conexion.getConnection(), txt_numPed.getText()) == null){
-                MFacturas a = new modelo.MFacturas(idFact, Double.parseDouble(txt_iva10.getText()+Double.parseDouble(txt_iva5.getText())), Double.parseDouble(txt_total.getText()),
-                        Date.valueOf(dt_fecha.getValue()), Date.valueOf(LocalDate.now()), new MUsuarios(datosUser.getCodUser(), datosUser.getLogin()),
-                        cb1.getSelectionModel().getSelectedItem(), cb2.getSelectionModel().getSelectedItem(), cb4.getSelectionModel().getSelectedItem(),
-                        cb3.getSelectionModel().getSelectedItem(), MClientes.obtenerCliente(conexion.getConnection(), txt_cliente.getText()));
-            } else {
-                MFacturas a = new modelo.MFacturas(idFact, Double.parseDouble(txt_iva10.getText()+Double.parseDouble(txt_iva5.getText())), Double.parseDouble(txt_total.getText()),
-                        Date.valueOf(dt_fecha.getValue()), Date.valueOf(LocalDate.now()), MPedidos.obtenerPedido(conexion.getConnection(), txt_numPed.getText()), new MUsuarios(datosUser.getCodUser(), datosUser.getLogin()),
-                        cb1.getSelectionModel().getSelectedItem(), cb2.getSelectionModel().getSelectedItem(), cb4.getSelectionModel().getSelectedItem(),
-                        cb3.getSelectionModel().getSelectedItem(), MClientes.obtenerCliente(conexion.getConnection(), txt_cliente.getText()));
-
-
+            MFacturas a = new modelo.MFacturas(idFact, Double.parseDouble(txt_iva10.getText() + Double.parseDouble(txt_iva5.getText())), Double.parseDouble(txt_total.getText()),
+                Date.valueOf(dt_fecha.getValue()), Date.valueOf(LocalDate.now()), MPedidos.obtenerPedido(conexion.getConnection(), txt_numPed.getText()), new MUsuarios(datosUser.getCodUser(), datosUser.getLogin()),
+                cb1.getSelectionModel().getSelectedItem(), cb2.getSelectionModel().getSelectedItem(), cb4.getSelectionModel().getSelectedItem(),
+                cb3.getSelectionModel().getSelectedItem(), MClientes.obtenerCliente(conexion.getConnection(), txt_cliente.getText()));
             //llamar al metodo guardar de la clase facturas
             int resultado = a.guardarRegistro(conexion.getConnection());
             if (resultado == 1) {
                 MTimbrado_detalle t = new modelo.MTimbrado_detalle(cb4.getSelectionModel().getSelectedItem(), datosUser.getEstablecimiento(), datosUser.getPunto_expedicion(), new
                         MTipos_documentos(1, "Factura"), idFact);
+                t.guardarConFact(conexion.getConnection());
                 listatbPrincipal.add(a);
                 // inresa detalle de acuerdo al indice
                 for (int i =0; i <tb_segundaria.getItems().size(); i++){
                     //genera objeto de tipo detalle y agrega de acuerto la posicion
                     MFacturas_detalle b = new MFacturas_detalle(a, listatbSegundaria.get(i).getProducto(), listatbSegundaria.get(i).getCant(), listatbSegundaria.get(i).getPrecio(), listatbSegundaria.get(i).getSub());
                     int result = b.guardarRegistro(conexion.getConnection());
+
                     if (result == 1){
                         System.out.println(" Producto: "+ listatbSegundaria.get(i).getProducto().getCodMun() + " Factura: " + idFact );
                     }
@@ -315,7 +309,6 @@ public class CFacturas implements Initializable {
             }
             //cerrar conexion
             conexion.cerrarConexion();
-        }
         }
     }
 

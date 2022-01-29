@@ -235,7 +235,7 @@ public class CTimbrados implements Initializable {
 
     @FXML
     public void guardarRegistro() {
-        Alert mensaje = new Alert(Alert.AlertType.INFORMATION);   //Reubicar las variables para guardar
+        Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
         //crea una nueva instancia del tipo pedidos
         MTimbrados a = new MTimbrados(ultCod(), Integer.valueOf(txt_numT.getText()),Double.valueOf(txt_numA.getText()), Date.valueOf(dt_fechaI.getValue()), Date.valueOf(dt_fechaF.getValue()), cbEmp.getSelectionModel().getSelectedItem());
         //llamar al metodo guardar de la clase pedidos
@@ -263,7 +263,7 @@ public class CTimbrados implements Initializable {
     }
 
     @FXML
-    public void editarRegistro() {
+    public void editarRegistro() { //no se debe editar, ahcer un formulario de mantenimiento
         Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
         //crea una nueva instancia del tipo pedidos
         //Llama al metodo editar registro
@@ -303,7 +303,7 @@ public class CTimbrados implements Initializable {
         Optional<ButtonType> resultConf = confMensaje.showAndWait();
         if(resultConf.get() == ButtonType.OK){
             //abre conexion
-            conexion.iniciarConexion();
+            conexion.iniciarConexion(); //falta validar si hay detalle registrado
             int resultado = tb_principal.getSelectionModel().getSelectedItem().eliminarRegistro(conexion.getConnection());
             if (resultado == 1) {
                 listatbPrincipal.remove(tb_principal.getSelectionModel().getSelectedIndex());
@@ -359,7 +359,6 @@ public class CTimbrados implements Initializable {
 
     @FXML
     public void salirVentanaMenu(){
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/VMenuPrincipal.fxml"));
             Parent root = loader.load();
@@ -371,15 +370,12 @@ public class CTimbrados implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
     public void salirVentana(){
-
             Stage myStage = (Stage) this.bt_salir.getScene().getWindow();
             myStage.close();
-
     }
 
     @FXML
@@ -405,10 +401,18 @@ public class CTimbrados implements Initializable {
         }
     }
 
-    public void limpiarCamposD(){}
+    public void limpiarCamposD(){
+    cbEst.setValue(null);
+    txt_numI.setText("");
+    txt_numF.setText("");
+    cbExp.setValue(null);
+    txt_numAC.setText("");
+    cbDoc.setValue(null);
+    cbEstado.setValue(null);
+    }
 
     public void guardarDetalle(){
-        Alert mensaje = new Alert(Alert.AlertType.INFORMATION);   //Reubicar las variables para guardar
+        Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
         //crea una nueva instancia de Detalle Timbrados  new MTimbrados(Integer.valueOf(txt_cod.getText()), Integer.valueOf(txt_numT.getText())),
         MTimbrado_detalle a = new MTimbrado_detalle(cbTim.getSelectionModel().getSelectedItem(), cbEst.getSelectionModel().getSelectedItem(), cbExp.getSelectionModel().getSelectedItem(), cbEstado.getSelectionModel().getSelectedItem(), cbDoc.getSelectionModel().getSelectedItem(),Integer.valueOf(txt_numI.getText()), Integer.valueOf(txt_numF.getText()));
         //llamar al metodo guardar de la clase pedidos
@@ -427,15 +431,22 @@ public class CTimbrados implements Initializable {
                 mensaje.setContentText("El registro ha sido agregado correctamente");
                 mensaje.setHeaderText("Resultado:");
                 mensaje.show();
-                limpiarCampos();
+                limpiarCamposD();
                 this.bt_nuevoD.requestFocus();
+            } else {
+                mensaje.setTitle("Guardado no completado");
+                mensaje.setContentText("No se ha podido guardar el registro");
+                mensaje.setHeaderText("Resultado:");
+                mensaje.show();
             }
             //cerrar conexion
             conexion.cerrarConexion();
         }
     }
     public void editarDetalle(){}
-    public void eliminarDetalle(){}
+    public void eliminarDetalle(){
+
+    }
 
 
    public void mostrarDet(){
